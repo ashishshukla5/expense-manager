@@ -1,6 +1,9 @@
 from users.regular_user import RegularUser
 from users.premium_user import PremiumUser
 from wallet.transaction import Income, Expense
+from payments.upi import UPI
+from payments.card import Card
+from payments.cash import Cash
 
 def main():
     user1 = RegularUser("Ashish", "ashish@gmail.com")
@@ -14,6 +17,12 @@ def main():
 
     user2.cashback(10000)
 
+    payments = [UPI(), Card(), Cash()]
+    for payment in payments:
+        print(f"\nProcessing payments for {user1.name}:")
+        payment.pay(500)
+
+    print("\nFinal Balances:")
     users = [user1, user2]
 
     for user in users:
