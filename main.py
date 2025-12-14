@@ -1,14 +1,23 @@
-from wallet.wallet import Wallet
+from users.regular_user import RegularUser
+from users.premium_user import PremiumUser
 from wallet.transaction import Income, Expense
 
 def main():
-    wallet = Wallet()
+    user1 = RegularUser("Ashish", "ashish@gmail.com")
+    user2 = PremiumUser("Rahul", "rahul@gmail.com")
 
-    wallet.add_transaction(Income(10000, "Salary"))
-    wallet.add_transaction(Expense(2500, "Groceries"))
-    wallet.add_transaction(Expense(1200, "Internet Bill"))
+    user1.wallet.add_transaction(Income(5000, "Salary"))
+    user2.wallet.add_transaction(Income(10000, "Salary"))
 
-    print(wallet)
+    user1.wallet.add_transaction(Expense(1200, "Food"))
+    user2.wallet.add_transaction(Expense(2000, "Shopping"))
+
+    user2.cashback(10000)
+
+    users = [user1, user2]
+
+    for user in users:
+        print(f"{user.name} ({user.user_type()}) -> {user.wallet}")
 
 if __name__ == "__main__":
     main()
