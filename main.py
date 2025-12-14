@@ -4,6 +4,7 @@ from wallet.transaction import Income, Expense
 from payments.upi import UPI
 from payments.card import Card
 from payments.cash import Cash
+from reports.console_report import ConsoleReport
 
 def main():
     user1 = RegularUser("Ashish", "ashish@gmail.com")
@@ -22,11 +23,13 @@ def main():
         print(f"\nProcessing payments for {user1.name}:")
         payment.pay(500)
 
-    print("\nFinal Balances:")
-    users = [user1, user2]
+    report = ConsoleReport()
+    print(f"\nReport for {user1.name}:")
+    report.generate(user1.wallet)
 
-    for user in users:
-        print(f"{user.name} ({user.user_type()}) -> {user.wallet}")
+    print(f"Report for {user2.name}:")
+    report.generate(user2.wallet)
+
 
 if __name__ == "__main__":
     main()
