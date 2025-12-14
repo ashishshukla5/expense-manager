@@ -19,9 +19,10 @@ def main():
     user2.cashback(10000)
 
     payments = [UPI(), Card(), Cash()]
-    for payment in payments:
-        print(f"\nProcessing payments for {user1.name}:")
-        payment.pay(500)
+    payment_amounts = [500, 700, 300]
+    for payment, amount in zip(payments, payment_amounts):
+        print(f"\nProcessing payments of {amount} for {user1.name}:")
+        payment.pay(amount, user1.wallet)
 
     report = ConsoleReport()
     print(f"\nReport for {user1.name}:")
