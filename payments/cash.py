@@ -6,4 +6,4 @@ class Cash(PaymentMethod):
             wallet._update_balance(-amount)
             print(f"Paid {amount} using Cash")
         else:
-            print("Insufficient balance for ash payment")
+            print("Insufficient balance for cash payment")
